@@ -185,7 +185,7 @@ export const createStandardForm = async (req, res) => {
   }
 };
 
-export const getProjectEstablishment = async (req, res) => {
+export const getSingleProjectEstablishment = async (req, res) => {
   try {
     const { projectId } = req.query;
 
@@ -204,6 +204,36 @@ export const getProjectEstablishment = async (req, res) => {
       "Proposal",
       "TechnicalSpecification",
     ]);
+
+    if (!getProjectEstablishment) {
+      return res.status(404).json({
+        status: false,
+        message: "No Project has been established yet.",
+      });
+    }
+
+    return res.status(202).json({
+      status: true,
+      message: "successfully Single fetched Project establishment",
+      projectEstablishmentData: getProjectEstablishment,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getProjectEstablishment = async (req, res) => {
+  try {
+    const getProjectEstablishment =
+      await ProjectEstablisment.findOne().populate([
+        "StandardForm",
+        "FinancialSpecification",
+        "LabTesting",
+        "Proposal",
+        "TechnicalSpecification",
+      ]);
 
     if (!getProjectEstablishment) {
       return res.status(404).json({
