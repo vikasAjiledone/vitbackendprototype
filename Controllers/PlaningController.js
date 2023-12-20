@@ -103,9 +103,9 @@ export const createProjectEstablishment = async (req, res) => {
 
 export const createStandardForm = async (req, res) => {
   try {
-    console.log(req.files);
+    const { projectId } = req.body;
+
     const {
-      projectId,
       reconnaissanceReport,
       topographicSurveyReport,
       layoutPlans,
@@ -226,14 +226,13 @@ export const getSingleProjectEstablishment = async (req, res) => {
 
 export const getProjectEstablishment = async (req, res) => {
   try {
-    const getProjectEstablishment =
-      await ProjectEstablisment.findOne().populate([
-        "StandardForm",
-        "FinancialSpecification",
-        "LabTesting",
-        "Proposal",
-        "TechnicalSpecification",
-      ]);
+    const getProjectEstablishment = await ProjectEstablisment.find().populate([
+      "StandardForm",
+      "FinancialSpecification",
+      "LabTesting",
+      "Proposal",
+      "TechnicalSpecification",
+    ]);
 
     if (!getProjectEstablishment) {
       return res.status(404).json({

@@ -8,6 +8,7 @@ import {
   createProjectEstablishment,
   createStandardForm,
   getProjectEstablishment,
+  getSingleProjectEstablishment,
 } from "../Controllers/PlaningController.js";
 
 const fileName = fileURLToPath(import.meta.url);
@@ -59,6 +60,7 @@ const multerUploadfiles = upload.fields([
 
 router.post("/createProjectEstablisment", createProjectEstablishment);
 router.post("/createStandardForm", multerUploadfiles, createStandardForm);
+router.get("/getSingleProjectEstablishment", getSingleProjectEstablishment);
 router.get("/getProjectEstablishment", getProjectEstablishment);
 
 export default router;
