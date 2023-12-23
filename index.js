@@ -1,8 +1,8 @@
 import express from "express";
 import connectDb from "./Database/ConnectDb.js";
 import cors from "cors";
-import PlanningRoute from "../vitbackendprototype/Routes/PlanningRoutes.js";
-import DesignRoute from "../vitbackendprototype/Routes/DesignRoute.js";
+import PlanningRoute from "./Routes/PlanningRoutes.js";
+import DesignRoute from "./Routes/DesignRoute.js";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 import AuthRoute from "./Routes/AuthRoute.js";
