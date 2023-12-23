@@ -5,6 +5,7 @@ import PlanningRoute from "../vitbackend/Routes/PlanningRoutes.js";
 import DesignRoute from "../vitbackend/Routes/DesignRoute.js";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
+import AuthRoute from "./Routes/AuthRoute.js";
 
 const fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(fileName);
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", PlanningRoute);
 app.use("/api", DesignRoute);
+app.use("/api", AuthRoute);
 
 connectDb()
   .then((res) => {
